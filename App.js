@@ -12,8 +12,9 @@ import {
   View
 } from 'react-native';
 
-import Login from './components/Login';
-import Secured from './components/Secured';
+import Login from './src/components/Login';
+import Secured from './src/components/Secured';
+//import Root from "./src/main";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -38,6 +39,7 @@ export default class App extends Component<{}> {
             onLoginPress={() => this.setState({isLoggedIn: true})}
             />;
   }
+  
 }
 
 const styles = StyleSheet.create({
