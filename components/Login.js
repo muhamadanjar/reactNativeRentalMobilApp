@@ -25,7 +25,7 @@ export default class Login extends Component {
             password: this.state.password,
             grant_type: 'password'
         };
-        console.log(params);
+        
 
         var formBody = [];
         for (var property in params) {
@@ -34,7 +34,7 @@ export default class Login extends Component {
             formBody.push(encodedKey + "=" + encodedValue);
         }
         formBody = formBody.join("&");
-
+        console.log(formBody);
         var proceed = false;
         fetch("https://192.168.20.5/api/login", {
                 method: "POST",
