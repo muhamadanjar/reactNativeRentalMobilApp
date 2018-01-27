@@ -31,8 +31,8 @@ class Home extends React.Component{
 
 	render(){
 		const region = {
-			latitude:3.146642,
-			longitude:101.695845,
+			latitude:-6.3252738,
+			longitude:106.0764884,
 			latitudeDelta:0.0922,
 			longitudeDelta:0.0421
 		}

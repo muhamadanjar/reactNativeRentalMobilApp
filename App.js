@@ -14,7 +14,7 @@ import {
 
 import Login from './src/components/Login';
 import Secured from './src/components/Secured';
-//import Root from "./src/main";
+import Root from "./src/main";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -30,14 +30,24 @@ export default class App extends Component<{}> {
     isLoggedIn: false
   };
   render() {
-    if (this.state.isLoggedIn) 
+    /*if (this.state.isLoggedIn) 
         return <Secured 
             onLogoutPress={() => this.setState({isLoggedIn: false})}
             />;
     else 
         return <Login 
             onLoginPress={() => this.setState({isLoggedIn: true})}
-            />;
+            />;*/
+
+    return this.renderMap();
+  }
+
+  renderMap(){
+    return (
+      <View style={styles.container}>
+        <Root {...this.props}/>
+      </View>
+    );
   }
   
 }
@@ -45,9 +55,6 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
