@@ -6,6 +6,7 @@ import {
     Button
 } from 'react-native';
 
+
 export default class Secured extends Component {
     render() {
         return (
@@ -22,4 +23,6 @@ export default class Secured extends Component {
                 </ScrollView>
                 )
     }
+
+    
 }

@@ -16,12 +16,6 @@ import Login from './src/components/Login';
 import Secured from './src/components/Secured';
 import Root from "./src/main";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 export default class App extends Component<{}> {
   state = {
@@ -30,15 +24,7 @@ export default class App extends Component<{}> {
     isLoggedIn: false
   };
   render() {
-    /*if (this.state.isLoggedIn) 
-        return <Secured 
-            onLogoutPress={() => this.setState({isLoggedIn: false})}
-            />;
-    else 
-        return <Login 
-            onLoginPress={() => this.setState({isLoggedIn: true})}
-            />;*/
-
+    console.log(this.props);
     return this.renderMap();
   }
 
