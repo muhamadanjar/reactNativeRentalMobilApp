@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import Login from './src/components/Login';
+
 import Secured from './src/components/Secured';
 import Root from "./src/main";
 
@@ -24,7 +24,7 @@ export default class App extends Component<{}> {
     isLoggedIn: false
   };
   render() {
-    console.log(this.props);
+    
     return this.renderMap();
   }
 

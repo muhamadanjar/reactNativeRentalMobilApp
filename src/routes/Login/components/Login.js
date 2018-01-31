@@ -10,36 +10,41 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
+import Logo from "../../../components/Logo";
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#36485f',
-      paddingLeft:60,
-      paddingRight:60,
-      alignSelf:'stretch',
-      justifyContent: 'center',
+    container : {
+        flexGrow: 1,
+        justifyContent:'center',
+        alignItems: 'center',
+        backgroundColor:'#000'
     },
-    linky: {
-      fontWeight: 'bold',
-      color: '#4C3E54',
-      paddingTop: 10
+    
+    inputBox: {
+        width:300,
+        backgroundColor:'rgba(255, 255,255,0.2)',
+        borderRadius: 25,
+        paddingHorizontal:16,
+        fontSize:16,
+        color:'#ffffff',
+        marginVertical: 10
     },
-    header:{
-        fontSize:24,
-        color:'#fff',
-        paddingBottom:10,
-        marginBottom:40,
-        borderBottomColor:'#199187',
-        borderBottomWidth:1,
+    button: {
+        width:300,
+        backgroundColor:'#1c313a',
+        borderRadius: 25,
+        marginVertical: 10,
+        paddingVertical: 13
     },
-    textinput:{
-        alignSelf:'stretch',
-        height:40,
-        color:'#fff',
-        marginBottom:30,
-        borderBottomColor:'#f8f8f8',
-        borderBottomWidth:1,
-    }
+    buttonText: {
+        
+        color:'#ffffff',
+        textAlign:'center'
+    },
+    message:{
+        
+        color: 'red', 
+        padding: 5
+    },
 })
 export default class Login extends Component {
     state = {
@@ -99,44 +104,49 @@ export default class Login extends Component {
         this._password.setNativeProps({ text: '' });
         this.setState({ message: '' });
     }
+    handleInput = (key, val)=>{
+		getInputData({
+			key,
+			value:val
+		});
+	}
     render() {
         return (
-            <View style={styles.container}>
+            <View>
                 <ScrollView>
-                    <Text 
-                        style={styles.header}>
+                    <Text>
                         Login
                     </Text>
-                    <TextInput style={styles.textinput}
-                        ref={component => this._username = component}
+                    <Logo/>
+                    <TextInput
                         placeholder='Username' 
-                        onChangeText={(username) => this.setState({username})}
                         autoFocus={true}
-                        onFocus={this.clearUsername}
+                       
+                        getInputData={this.props.getInputData}
                     />
-                    <TextInput style={styles.textinput}
-                        ref={component => this._password = component}
+                    <TextInput
                         placeholder='Password' 
-                        onChangeText={(password) => this.setState({password})}
                         secureTextEntry={true}
-                        onFocus={this.clearPassword}
-                        onSubmitEditing={this._userLogin}
+                        onSubmitEditing={this.props.userLogin}
+                        
+                        getInputData={this.props.getInputData}
                     />
-                    {!!this.state.message && (
+                    {!!this.props.message && (
                         <Text
-                            style={{fontSize: 14, color: 'red', padding: 5}}>
-                            {this.state.message}
+                            style={styles.message}>
+                            {this.props.message}
                         </Text>
                     )}
-                    {this.state.isLoggingIn && <ActivityIndicator />}
-                    <View style={{margin:7}} />
-                    <TouchableOpacity>
+                    {this.props.isLoggingIn && <ActivityIndicator />}
+                    <View  />
+                    
                     <Button 
-                        disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
-                        onPress={this._userLogin}
+                        disabled={this.props.isLoggingIn}
+                        onPress={this.props.userLogin}
+                        onClick={this.props.userLogin}
                         title="Submit"
                     />
-                    </TouchableOpacity>
+                    
                 </ScrollView>
             </View>
             )

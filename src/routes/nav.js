@@ -4,7 +4,8 @@ import { StackNavigator, DrawerNavigator } from 'react-navigation';
 
 import HomeContainer from "./Home/container/HomeContainer";
 import TrackDriverContainer from "./TrackDriver/container/TrackDriverContainer";
-import Login from "../components/Login";
+import LoginContainer from "./Login/container/LoginContainer";
+//import Login from "../components/Login";
 const noTransitionConfig = () => ({
     transitionSpec: {
       duration: 0,
@@ -14,7 +15,7 @@ const noTransitionConfig = () => ({
 });
 
 const PrimaryNav = StackNavigator({
-    loginStack: { screen: Login },
+    loginStack: { screen: LoginContainer },
     drawerStack: { screen: HomeContainer }
   }, {
     // Default config for all screens
