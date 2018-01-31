@@ -105,7 +105,7 @@ export default class Login extends Component {
         this.setState({ message: '' });
     }
     handleInput = (key, val)=>{
-		getInputData({
+		this.props.getInputData({
 			key,
 			value:val
 		});
@@ -121,15 +121,15 @@ export default class Login extends Component {
                     <TextInput
                         placeholder='Username' 
                         autoFocus={true}
-                       
-                        getInputData={this.props.getInputData}
+                        onChangeText={this.handleInput.bind(this, "username")}
+                        
                     />
                     <TextInput
                         placeholder='Password' 
                         secureTextEntry={true}
                         onSubmitEditing={this.props.userLogin}
+                        onChangeText={this.handleInput.bind(this, "password")}
                         
-                        getInputData={this.props.getInputData}
                     />
                     {!!this.props.message && (
                         <Text

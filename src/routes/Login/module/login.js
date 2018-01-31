@@ -12,10 +12,10 @@ const {
     LOGOUT_REQUEST
 	  } = constants;
 export function getInputData(payload){
-	return{
-		type:GET_INPUT,
-		payload:payload
-	}
+    return{
+        type:GET_INPUT,
+        payload
+    }
 }
 export function userLogin(){
     var proceed = false;
@@ -28,8 +28,8 @@ export function userLogin(){
                     //'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: JSON.stringify({
-                username: 'admin',
-                password: 'password',
+                username: store().login.inputData.username,
+                password: store().login.inputData.password,
             }),
         })
         .then((response) => response.json())
