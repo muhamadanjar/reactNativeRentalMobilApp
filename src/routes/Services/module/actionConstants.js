@@ -1,0 +1,5 @@
+export default {
+	GET_DATA:"GET_DATA",
+	GET_INPUT:"GET_INPUT",
+	GET_MESSAGE:"GET_MESSAGE",
+};

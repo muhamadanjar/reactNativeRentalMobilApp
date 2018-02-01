@@ -41,7 +41,7 @@ class Home extends React.Component{
 			<Container>
 				{ (status !== "pending") &&
 					<View style={{flex:1}}>
-						<HeaderComponent logo={taxiLogo}/>
+						
 						{this.props.region.latitude &&
 						<MapContainer region={this.props.region} 
 							getInputData={this.props.getInputData}

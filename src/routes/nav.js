@@ -1,28 +1,101 @@
 import React from 'react';
-import { Text, Animated, Easing } from 'react-native'
+import { Text, Animated, Easing, StyleSheet } from 'react-native'
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
-
+import { Header, Left, Body, Right, Button} from "native-base";
 import HomeContainer from "./Home/container/HomeContainer";
 import TrackDriverContainer from "./TrackDriver/container/TrackDriverContainer";
 import LoginContainer from "./Login/container/LoginContainer";
-//import Login from "../components/Login";
-const noTransitionConfig = () => ({
-    transitionSpec: {
-      duration: 0,
-      timing: Animated.timing,
-      easing: Easing.step0
-    }
+import DrawerContainer from "./Navigation/components/DrawerContainer";
+import ServicesContainer from "./Services/components/Services";
+
+import Icon from "react-native-vector-icons/FontAwesome";
+
+const styles = StyleSheet.create({
+	icon:{
+		color:"#fff",
+		fontSize:20
+	},
+	headerText:{
+		color:"#fff",
+		fontSize:14
+	},
+	logo:{
+		width:50,
+		height:50
+	}
+
 });
 
-const PrimaryNav = StackNavigator({
-    loginStack: { screen: LoginContainer },
-    drawerStack: { screen: HomeContainer }
+const noTransitionConfig = () => ({
+  transitionSpec: {
+    duration: 0,
+    timing: Animated.timing,
+    easing: Easing.step0
+  }
+})
+
+const DrawerStack = DrawerNavigator({
+  screen1: { screen: HomeContainer },
+  screen2: { screen: HomeContainer },
+  screen3: { screen: HomeContainer },
+}, {
+  gesturesEnabled: false,
+  contentComponent: DrawerContainer
+})
+
+const drawerButton = (navigation) =>
+      <Left>
+				<Button transparent
+          onPress={() => {
+              // Coming soon: navigation.navigate('DrawerToggle')
+              // https://github.com/react-community/react-navigation/pull/2492
+              if (navigation.state.index === 0) {
+                navigation.navigate('DrawerOpen')
+              } else {
+                navigation.navigate('DrawerClose')
+              }
+            }
+          }
+        >
+					<Icon name="bars" style={styles.icon} />
+				</Button>
+			</Left>
+
+const DrawerNavigation = StackNavigator({
+    DrawerStack: { screen: DrawerStack }
   }, {
-    // Default config for all screens
-    headerMode: 'none',
-    title: 'Main',
-    initialRouteName: 'loginStack',
-    transitionConfig: noTransitionConfig
-  })
-  
-  export default PrimaryNav
+    headerMode: 'float',
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {backgroundColor: '#4C3E54'},
+      title: 'Welcome!',
+      headerTintColor: 'white',
+      gesturesEnabled: false,
+      headerLeft: drawerButton(navigation)
+    })
+})
+// login stack
+const LoginStack = StackNavigator({
+  loginScreen: { screen: LoginContainer },
+  signupScreen: { screen: LoginContainer },
+  forgottenPasswordScreen: { screen: LoginContainer, navigationOptions: { title: 'Forgot Password' } }
+}, {
+  headerMode: 'float',
+  navigationOptions: {
+    headerStyle: {backgroundColor: '#E73536'},
+    title: 'You are not logged in',
+    headerTintColor: 'white'
+  }
+})
+// Manifest of possible screens
+const PrimaryNav = StackNavigator({
+  loginStack: { screen: DrawerNavigation },
+  drawerStack: { screen: DrawerNavigation }
+}, {
+  // Default config for all screens
+  headerMode: 'none',
+  title: 'Main',
+  initialRouteName: 'loginStack',
+  transitionConfig: noTransitionConfig
+})
+
+export default PrimaryNav

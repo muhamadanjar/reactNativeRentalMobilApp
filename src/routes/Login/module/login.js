@@ -43,6 +43,7 @@ export function userLogin(){
                 type:POST_LOGIN,
                 payload:response.data
             });
+            navigation.navigate('screen1');
             
         })
         
@@ -57,32 +58,7 @@ export function userLogin(){
         });
     }
 }
-export function _userLogin (){
 
-    var proceed = false;
-    return (dispatch, store)=>{
-        var params = {
-            username: store().login.inputData.username,
-            password: store().login.inputData.password,
-            grant_type: 'password'
-        };
-        request.post(store().login.server_url+"api/login")
-			.query({
-                username: store().login.inputData.username,
-                password: store().login.inputData.password,
-			})
-			.finish((error, res)=>{
-                console.log(error);
-                if(res){
-                    dispatch({
-                        type:POST_LOGIN,
-                        payload:res.body
-                    });
-                }
-		}).catch((error)=> console.log(error.message));
-    }
-    
-}
 
 //--------------------
 //Action Handlers
@@ -129,7 +105,6 @@ const ACTION_HANDLERS = {
     POST_LOGIN:handlePostLogin,
     GET_MESSAGE:handleMessage,
     LOGIN_SUCCESS:handleIsLoggingIn
-    
 }
 
 const initialState = {
