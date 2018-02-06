@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var mongojs = require("mongojs");
 
-var db = mongojs("mongodb://eman:eman@ds163181.mlab.com:63181/taxiapp", ["driversLocation"]);
+var db = mongojs("mongodb://arvanzark:greatknight1@ds115758.mlab.com:15758/rentalmobilapp", ["driversLocation"]);
 
 
 //upadate driver socket id

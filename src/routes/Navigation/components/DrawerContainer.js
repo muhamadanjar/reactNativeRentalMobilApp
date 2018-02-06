@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions,addNavigationHelpers } from 'react-navigation'
 
 export default class DrawerContainer extends React.Component {
 
@@ -25,14 +25,14 @@ export default class DrawerContainer extends React.Component {
           Screen 1
         </Text>
         <Text
-          
+          onPress={() => navigation.navigate('screen2')}
           style={styles.uglyDrawerItem}>
           Screen 2
         </Text>
         <Text
-          
+          onPress={() => navigation.navigate('services')}
           style={styles.uglyDrawerItem}>
-          Screen 3
+          Services
         </Text>
         <Text
           onPress={this.logout}

@@ -6,7 +6,6 @@ import PrimaryNav from '../../nav';
 
 // here is our redux-aware our smart component
 function ReduxNavigation (props) {
-  
   const { dispatch, nav } = props
   const navigation = ReactNavigation.addNavigationHelpers({
     dispatch,

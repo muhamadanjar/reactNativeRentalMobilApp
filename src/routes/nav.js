@@ -1,14 +1,16 @@
 import React from 'react';
-import { Text, Animated, Easing, StyleSheet } from 'react-native'
+import { Text, Animated, Easing, StyleSheet, View } from 'react-native'
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import { Header, Left, Body, Right, Button} from "native-base";
 import HomeContainer from "./Home/container/HomeContainer";
 import TrackDriverContainer from "./TrackDriver/container/TrackDriverContainer";
 import LoginContainer from "./Login/container/LoginContainer";
+import ReduxNavigation from "./Navigation/container/ReduxNavigation";
 import DrawerContainer from "./Navigation/components/DrawerContainer";
-import ServicesContainer from "./Services/components/Services";
+//import ServicesContainer from "./Services/container/ServiceContainer";
 
 import Icon from "react-native-vector-icons/FontAwesome";
+
 
 const styles = StyleSheet.create({
 	icon:{
@@ -34,17 +36,8 @@ const noTransitionConfig = () => ({
   }
 })
 
-const DrawerStack = DrawerNavigator({
-  screen1: { screen: HomeContainer },
-  screen2: { screen: HomeContainer },
-  screen3: { screen: HomeContainer },
-}, {
-  gesturesEnabled: false,
-  contentComponent: DrawerContainer
-})
-
-const drawerButton = (navigation) =>
-      <Left>
+const drawerButton = (navigation) =>{
+  <Left>
 				<Button transparent
           onPress={() => {
               // Coming soon: navigation.navigate('DrawerToggle')
@@ -59,8 +52,17 @@ const drawerButton = (navigation) =>
         >
 					<Icon name="bars" style={styles.icon} />
 				</Button>
-			</Left>
-
+	</Left>
+}
+      
+const DrawerStack = DrawerNavigator({
+  screen1: { screen: HomeContainer },
+  screen2: { screen: HomeContainer },
+  //services: { screen: ServiceContainer },
+}, {
+  gesturesEnabled: false,
+  contentComponent: DrawerContainer
+})
 const DrawerNavigation = StackNavigator({
     DrawerStack: { screen: DrawerStack }
   }, {
@@ -70,7 +72,8 @@ const DrawerNavigation = StackNavigator({
       title: 'Welcome!',
       headerTintColor: 'white',
       gesturesEnabled: false,
-      headerLeft: drawerButton(navigation)
+      headerLeft: drawerButton(navigation),
+      //headerRight: drawerButton(navigation)
     })
 })
 // login stack

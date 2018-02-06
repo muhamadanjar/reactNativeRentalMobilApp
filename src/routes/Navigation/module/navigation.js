@@ -1,3 +1,5 @@
+import update from "react-addons-update";
+
 import {LOGIN_URL} from "../../../config/config";
 import {AsyncStorage} from "react-native";
 import constants from "./actionConstants";

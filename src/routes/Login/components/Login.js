@@ -11,6 +11,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 import Logo from "../../../components/Logo";
+import { NavigationActions } from 'react-navigation';
+
 const styles = StyleSheet.create({
     container : {
         flexGrow: 1,
@@ -122,7 +124,6 @@ export default class Login extends Component {
                         placeholder='Username' 
                         autoFocus={true}
                         onChangeText={this.handleInput.bind(this, "username")}
-                        
                     />
                     <TextInput
                         placeholder='Password' 
@@ -146,7 +147,6 @@ export default class Login extends Component {
                         onClick={this.props.userLogin}
                         title="Submit"
                     />
-                    
                 </ScrollView>
             </View>
             )
